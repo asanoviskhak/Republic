@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import konstituciya from './api/konstituciya.json';
 import { LinkBox, Link } from '@chakra-ui/react';
-import MainLayout from './components/Layout';
+import MainLayout from '../components/Layout';
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();

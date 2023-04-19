@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import konstituciya from '../api/konstituciya.json';
 import { useEffect, useState } from 'react';
-import MainLayout from '../components/Layout';
+import MainLayout from '../../components/Layout';
 
 const ChapterView = () => {
   const router = useRouter();
