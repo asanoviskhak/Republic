@@ -25,7 +25,9 @@ const ChapterView = () => {
   }, [chapterId]);
 
   return (
-    <MainLayout title={currentChapter ? currentChapter.title : 'Loading...'}>
+    <MainLayout
+      title={currentChapter ? String(currentChapter.title) : 'Loading...'}
+    >
       <Box
         marginY='4rem'
         sx={{

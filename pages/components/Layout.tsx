@@ -7,11 +7,11 @@ interface MainLayoutProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
-const MainLayout: FC<MainLayoutProps> = ({ title, children }) => {
+const MainLayout: FC<MainLayoutProps> = ({ title = '404', children }) => {
   return (
     <Container maxW='4xl' centerContent>
       <Head>
-        <title>Re | {title || '404'}</title>
+        <title>Re | {title}</title>
         <meta
           name='description'
           content='Republic.kg – ваш проводник в мире законов, кодексов и юридических аспектов Кыргызской Республики. Мы создали этот сайт, чтобы сделать юридическую информацию доступной и понятной для каждого, независимо от возраста или профессии. 🌐'
@@ -41,7 +41,6 @@ const MainLayout: FC<MainLayoutProps> = ({ title, children }) => {
         <link rel='icon' href='/favicon.ico' />
         <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
-        <meta name='theme-color' content='#ffffff' />
       </Head>
       {children}
     </Container>

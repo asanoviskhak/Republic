@@ -1,13 +1,52 @@
-import { Box, Heading, LinkOverlay, Text, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  LinkOverlay,
+  Text,
+  Button,
+  useColorMode,
+  Switch,
+  FormControl,
+  FormLabel,
+} from '@chakra-ui/react';
 import konstituciya from './api/konstituciya.json';
 import { LinkBox, Link } from '@chakra-ui/react';
 import MainLayout from './components/Layout';
 
 export default function Home() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <MainLayout title='Главная'>
-      <Box marginY='4rem'>
-        <Heading>Приветствуем вас на Republic.kg! 👋</Heading>
+      <Box
+        marginY='4rem'
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          textAlign: 'left',
+          width: '100%',
+          gap: '3rem',
+        }}
+      >
+        <Heading>Republic</Heading>
+        <FormControl
+          sx={{
+            width: 'fit-content',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <FormLabel htmlFor='dark-mode'>Темная тема</FormLabel>
+          <Switch
+            id='dark-mode'
+            size='lg'
+            onChange={toggleColorMode}
+            isChecked={colorMode === 'dark'}
+          />
+        </FormControl>
       </Box>
       <Box
         sx={{
@@ -26,11 +65,14 @@ export default function Home() {
               key={item.title}
               sx={{
                 width: '100%',
-                border: '1px solid #e2e8f0',
+                border: `1px solid ${
+                  colorMode === 'light' ? '#cbd5e0' : '#4a5568'
+                }`,
                 borderRadius: '1rem',
                 padding: '1rem',
                 _hover: {
-                  backgroundColor: '#f7fafc',
+                  backgroundColor:
+                    colorMode === 'light' ? '#e2e8f0' : '#2d3748',
                 },
               }}
             >
