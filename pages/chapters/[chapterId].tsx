@@ -29,7 +29,7 @@ const ChapterView = () => {
       title={currentChapter ? String(currentChapter.title) : 'Loading...'}
     >
       <Box
-        marginY='4rem'
+        marginY={['2rem', '4rem']}
         sx={{
           alignSelf: 'flex-start',
         }}
@@ -38,15 +38,24 @@ const ChapterView = () => {
           Назад
         </Button>
       </Box>
-      <Box marginY='4rem'>
+      <Box
+        marginY={['2rem', '4rem']}
+        sx={{
+          width: '100%',
+        }}
+      >
         {currentChapter ? (
-          <Heading fontSize='xxx-large' fontWeight='black' textAlign='left'>
+          <Heading
+            fontSize={['2xl', 'xxx-large']}
+            fontWeight='black'
+            textAlign='left'
+          >
             {currentChapter.title}
           </Heading>
         ) : null}
       </Box>
       <Box
-        marginY='2rem'
+        marginY={['1rem', '2rem']}
         sx={{
           flex: 1,
           width: '100%',
@@ -73,7 +82,7 @@ const ChapterView = () => {
                   <CardHeader>
                     <Heading
                       as='h2'
-                      fontSize='2rem'
+                      fontSize={['1.4rem', '2rem']}
                       flex='1'
                       textAlign='left'
                       color='grey'
@@ -85,12 +94,12 @@ const ChapterView = () => {
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '1.6rem',
+                      gap: ['1rem', '1.6rem'],
                     }}
                   >
                     {item.paragraphs.map((paragraph: string) => {
                       return (
-                        <Text fontSize='1.6rem' key={paragraph}>
+                        <Text fontSize={['1rem', '1.6rem']} key={paragraph}>
                           {paragraph}
                         </Text>
                       );

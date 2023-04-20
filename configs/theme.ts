@@ -9,7 +9,16 @@ const config: ThemeConfig = {
   useSystemColorMode: true,
 };
 
-// 3. extend the theme
-const theme = extendTheme({ config });
+// 3. extend the theme 
+const theme = extendTheme({
+  config,
+  global: {
+    html: {
+      scrollBehavior: 'smooth',
+    },
+  },
+});
+
+
 
 export default theme;

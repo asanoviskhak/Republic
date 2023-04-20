@@ -39,10 +39,18 @@ export default function Home() {
             justifyContent: 'center',
           }}
         >
-          <FormLabel htmlFor='dark-mode'>Темная тема</FormLabel>
+          <FormLabel
+            htmlFor='dark-mode'
+            sx={{
+              marginBottom: 0,
+            }}
+            alignItems='baseline'
+          >
+            <Text fontSize='sm'>Темная тема</Text>
+          </FormLabel>
           <Switch
             id='dark-mode'
-            size='lg'
+            size='md'
             onChange={toggleColorMode}
             isChecked={colorMode === 'dark'}
           />
@@ -55,8 +63,9 @@ export default function Home() {
           alignItems: 'center',
           justifyContent: 'center',
           gap: '1rem',
+          width: '100%',
         }}
-        marginY='4rem'
+        marginY={['2rem', '4rem']}
       >
         {konstituciya.map((item: any, index: number) => {
           return (
