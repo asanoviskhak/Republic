@@ -9,32 +9,32 @@ import {
   CardHeader,
   CardBody,
 } from '@chakra-ui/react';
-import konstituciya from '../api/konstituciya.json';
 import { useEffect, useState } from 'react';
-import MainLayout from '../../components/Layout';
+import NextHead from '@/components/NextHead';
 
-const ChapterView = () => {
+const ChapterView = ({ ...props }) => {
   const router = useRouter();
-  const { chapterId } = router.query;
+  const { params } = router.query;
   const [currentChapter, setCurrentChapter] = useState<any>(null);
 
   useEffect(() => {
-    if (konstituciya) {
-      setCurrentChapter(konstituciya[Number(chapterId)]);
+    if (props?.constitution && params) {
+      setCurrentChapter(
+        props?.constitution[Number(params[0])].chapters[Number(params[1])]
+      );
     }
-  }, [chapterId]);
+  }, [params, props?.constitution]);
 
   return (
-    <MainLayout
-      title={currentChapter ? String(currentChapter.title) : 'Loading...'}
-    >
+    <Box width='100%'>
+      <NextHead title={currentChapter ? currentChapter.title : 'Статья'} />
       <Box
         marginY={['2rem', '4rem']}
         sx={{
           alignSelf: 'flex-start',
         }}
       >
-        <Button as={Link} href='/' variant='outline'>
+        <Button as={Link} href='/constitution' variant='outline'>
           Назад
         </Button>
       </Box>
@@ -111,7 +111,7 @@ const ChapterView = () => {
           </Box>
         ) : null}
       </Box>
-    </MainLayout>
+    </Box>
   );
 };
 

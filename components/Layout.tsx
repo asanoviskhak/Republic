@@ -1,23 +1,27 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
-import { Container } from '@chakra-ui/react';
-
+import {
+  Container,
+  Box,
+  Heading,
+  Switch,
+  FormLabel,
+  FormControl,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 interface MainLayoutProps {
   title?: string;
   children: React.ReactNode | React.ReactNode[];
 }
 
-const MainLayout: FC<MainLayoutProps> = ({ title = '404', children }) => {
+const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Container maxW='4xl' centerContent>
       <Head>
-        <title>Re | {title}</title>
-        <meta
-          name='description'
-          content='Republic.kg – ваш проводник в мире законов, кодексов и юридических аспектов Кыргызской Республики. Мы создали этот сайт, чтобы сделать юридическую информацию доступной и понятной для каждого, независимо от возраста или профессии. 🌐'
-        />
-        {/* create meta tags for socials */}
-
         <meta property='og:title' content='Republic.kg' />
         <meta
           property='og:description'
@@ -40,8 +44,48 @@ const MainLayout: FC<MainLayoutProps> = ({ title = '404', children }) => {
 
         <link rel='icon' href='/favicon.ico' />
         <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
-        <link rel='manifest' href='/manifest.json' />
+        {/* <link rel='manifest' href='/manifest.json' /> */}
       </Head>
+      <Box
+        marginY={['2rem', '4rem']}
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          textAlign: 'left',
+          width: '100%',
+          gap: '3rem',
+        }}
+      >
+        <Heading fontFamily='mono' fontStyle='italic' as={Link} href='/'>
+          Republic
+        </Heading>
+        <FormControl
+          sx={{
+            width: 'fit-content',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <FormLabel
+            htmlFor='dark-mode'
+            sx={{
+              marginBottom: 0,
+            }}
+            alignItems='baseline'
+          >
+            <Text fontSize='sm'>Темная тема</Text>
+          </FormLabel>
+          <Switch
+            id='dark-mode'
+            size='md'
+            onChange={toggleColorMode}
+            isChecked={colorMode === 'dark'}
+          />
+        </FormControl>
+      </Box>
       {children}
     </Container>
   );

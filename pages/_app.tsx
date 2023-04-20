@@ -1,6 +1,8 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { NextComponentType } from 'next';
 import theme from '@/configs/theme';
+import MainLayout from '@/components/Layout';
+import constitution from './api/konstituciya.json';
 
 function MyApp({
   Component,
@@ -11,7 +13,9 @@ function MyApp({
 }) {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <MainLayout>
+        <Component {...pageProps} constitution={constitution} />
+      </MainLayout>
     </ChakraProvider>
   );
 }

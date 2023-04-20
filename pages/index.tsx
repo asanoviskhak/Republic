@@ -1,102 +1,66 @@
-import {
-  Box,
-  Heading,
-  LinkOverlay,
-  Text,
-  Button,
-  useColorMode,
-  Switch,
-  FormControl,
-  FormLabel,
-} from '@chakra-ui/react';
-import konstituciya from './api/konstituciya.json';
-import { LinkBox, Link } from '@chakra-ui/react';
-import MainLayout from '../components/Layout';
+import { Box, Heading, Highlight, useColorMode, Text } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const router = useRouter();
   return (
-    <MainLayout title='Главная'>
+    <Box width={'100%'} marginY={['2rem', '4rem']}>
       <Box
-        marginY='4rem'
         sx={{
           display: 'flex',
-          flexWrap: 'wrap',
+          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          textAlign: 'left',
-          width: '100%',
-          gap: '3rem',
         }}
       >
-        <Heading>Republic</Heading>
-        <FormControl
-          sx={{
-            width: 'fit-content',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <FormLabel
-            htmlFor='dark-mode'
-            sx={{
-              marginBottom: 0,
-            }}
-            alignItems='baseline'
-          >
-            <Text fontSize='sm'>Темная тема</Text>
-          </FormLabel>
-          <Switch
-            id='dark-mode'
-            size='md'
-            onChange={toggleColorMode}
-            isChecked={colorMode === 'dark'}
-          />
-        </FormControl>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '1rem',
-          width: '100%',
-        }}
-        marginY={['2rem', '4rem']}
-      >
-        {konstituciya.map((item: any, index: number) => {
-          return (
-            <LinkBox
-              as='article'
-              key={item.title}
-              sx={{
-                width: '100%',
-                border: `1px solid ${
-                  colorMode === 'light' ? '#cbd5e0' : '#4a5568'
-                }`,
-                borderRadius: '1rem',
-                padding: '1rem',
-                _hover: {
-                  backgroundColor:
-                    colorMode === 'light' ? '#e2e8f0' : '#2d3748',
-                },
+        <Box>
+          <Heading lineHeight='tall'>
+            <Highlight
+              query={['законов', 'кодексов', 'юридических']}
+              styles={{
+                px: '2',
+                py: '2',
+                rounded: 'full',
+                bg: colorMode === 'light' ? '#cbd5e0' : '#4a5568',
+                color: colorMode === 'light' ? '#1a202c' : '#fff',
               }}
             >
-              <LinkOverlay href={`/chapters/${index}`}>
-                <Text as='h2' fontSize='1.3rem' flex='1' textAlign='left'>
-                  <strong>{item.title}</strong>
-                </Text>
-              </LinkOverlay>
-              <Text as='h3' flex='1' textAlign='left' color='grey'>
-                <strong>{item.articles.length} статьи</strong>
-              </Text>
-            </LinkBox>
-          );
-        })}
+              Republic.kg – ваш проводник в мире законов, кодексов и юридических
+              аспектов Кыргызской Республики. Мы создали этот сайт, чтобы
+              сделать юридическую информацию доступной и понятной для каждого,
+              независимо от возраста или профессии. 🌐
+            </Highlight>
+          </Heading>
+        </Box>
       </Box>
-    </MainLayout>
+      <Box
+        as='button'
+        sx={{
+          display: 'flex',
+          width: '100%',
+          border: `1.5px solid ${
+            colorMode === 'light' ? '#cbd5e0' : '#4a5568'
+          }`,
+          borderRadius: '5rem',
+          padding: '1rem',
+          backgroundColor: colorMode === 'light' ? '#fff' : '#1a202c',
+          _hover: {
+            backgroundColor: colorMode === 'light' ? '#f7fafc' : '#2d3748',
+          },
+          justifyContent: 'center',
+          alignItems: 'baseline',
+        }}
+        marginY={['1.5rem', '3rem']}
+        onClick={() => {
+          router.push('/constitution');
+        }}
+      >
+        <Text fontSize={['1rem', '3rem']} fontStyle='italic' textAlign='center'>
+          Прочитать конституцию <ArrowForwardIcon />
+        </Text>
+      </Box>
+    </Box>
   );
 }
